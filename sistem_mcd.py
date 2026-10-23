@@ -1,11 +1,11 @@
-#sistem mesin pemesanan McD
-#Self Ordering Kiosk
+# sistem mesin pemesanan McD
+# Self Ordering Kiosk
 
- # 1. Raisha Aqila (16726033)
- # 2. David Fernando Sitorus (16726134)
- # 3. Nayaka Chesta Ahmada (16728190) 
- # 4. Sofia Anindita Maheswari (16726339)
- # 5. Fairul Alif Zidandie (16726183)
+# 1. Raisha Aqila (16726033)
+# 2. David Fernando Sitorus (16726134)
+# 3. Nayaka Chesta Ahmada (16728190)
+# 4. Sofia Anindita Maheswari (16726339)
+# 5. Fairul Alif Zidandie (16726183)
 
 #kamus
 
@@ -21,63 +21,101 @@
 
 #harga=int(integer)
 
-#menampilkan opsi take away atau dine in 
-print ("selamat datang di McDonalds")
-print ("silahkan pilih opsi pemesanan")
-print ("1.take away")
-print ("2.dine in")
+# menampilkan opsi take away atau dine in (Sequence)
+print("selamat datang di McDonalds")
+print("silahkan pilih opsi pemesanan")
+print("1.take away")
+print("2.dine in")
 
-#pembeli memilih pesanan untuk di take away atau dine in (conditional)
+# pembeli memilih pesanan untuk di take away atau dine in (Kondisional)
 pilihan = input("Masukkan pilihan (1/2): ")
 if pilihan == "1":
-    print ("Menu take away")
-
+    print("Menu take away")
 elif pilihan == "2":
-#pembeli memasukkan nomor meja
-     no_meja = int(input("masukkan nomor meja anda (1-30) : " ))
-     print (f"nomor meja {no_meja}")
+    # pembeli memasukkan nomor meja
+    no_meja = int(input("masukkan nomor meja anda (1-30) : "))
+    print(f"nomor meja {no_meja}")
 
-#daftar list menu yang ada di McD (array)
-menu =("burger", "ayam", "nasi", "nasi_ayam", "coca_cola", "air_putih", "kentang_goreng", "mcflurry" )
-harga = (20000, 15000, 5000, 18000, 8000, 4000, 13500, 10000)
-total = 0
+# daftar list menu dan harga yang ada di McD (Array)
+menu = (
+    "burger",
+    "ayam",
+    "nasi",
+    "nasi_ayam",
+    "coca_cola",
+    "air_putih",
+    "kentang_goreng",
+    "mcflurry",
+)
+harga = (20000, 
+         15000, 
+         5000, 
+         18000, 
+         8000, 
+         4000, 
+         13500, 
+         10000)
 
-#ingin tambah pesanan atau tidak(looping)
-tambah = "ya"
+#digunakan untuk menampung loopingan dari menu tambahan (array) (maks 50)
+nama_pesanan = [""] * 50
+jumlah_pesanan = [0] * 50
+subtotal_pesanan = [0] * 50
 
-while (tambah == "ya"):
+total = 0 # penanda dan penyimpan total harga
+banyak_pesanan = 0  # Penanda buat array/list menu dan harga yang di loopingkan (yang dipilih oleh customer)
 
-    #Menampilkan menu Mcd di layar (gabungan sequence dan looping)
-    print ('Menu McDonalds')  # >>sequence (menampilkan urutan menu dan harga)
-    for i in range(8):        # >>looping  (mengulang urutan yang ada di menu dan harga)
-        print(i + 1, menu[i], "- Rp", harga[i])
+# Menampilkan menu Mcd di layar ( gabungan Sequence & Looping)
+print("\nMenu McDonalds")
+for i in range(8):
+    print(i + 1, menu[i], "- Rp", harga[i])
 
-    #pembeli memasukkan jumlah menu McD yang ingin di pesan(sequence)
-    jumlah_pesanan = int(input('masukkan jumlah menu McD yang ingin di pesan : '))
+tambah = "ya" # kondisi dimana ketika customer memilih "ya" maka sistem akan kembali kebagian pilih_menu (Looping)
 
-    #pembeli memasukkan no menu dan jumlah menunya(looping)
-    for i in range(jumlah_pesanan):
-        pilih_menu = int(input('pilih no menu yang ingin di pesan (1-8) :'))
-        jumlah = int(input("masukkan jumlahnya : "))
+while tambah == "ya": # kondisi dimana ketika customer memilih "ya" maka sistem akan kembali kebagian pilih_menu (Looping)
 
-        #menghitung subtotal dan menambahkannya ke total (sequence)
-        subtotal = harga[pilih_menu - 1] * jumlah
-        total = total + subtotal
-        print (f"{menu[pilih_menu - 1]} x {jumlah} = Rp {subtotal}")
+    # pembeli memilih nomor menu dan jumlahnya (Sequence)
+    pilih_menu = int(input("\npilih no menu yang ingin di pesan (1-8) : "))
+    jumlah = int(input("masukkan jumlahnya : "))
 
-    print (f"Total sementara : Rp {total}")
+    # sistem menghitung subtotal dan total (Sequence)
+    subtotal = harga[pilih_menu - 1] * jumlah
+    total = total + subtotal
 
-    #menanyakan apakah mau tambah pesanan(looping)
+    # Menyimpan data ke Array sebelum di tampilkan kedalam output (struk) 
+    nama_pesanan[banyak_pesanan] = menu[pilih_menu - 1]
+    jumlah_pesanan[banyak_pesanan] = jumlah
+    subtotal_pesanan[banyak_pesanan] = subtotal
+
+    # Menambah hitungan berapa jenis menu yang sudah dipesan
+    banyak_pesanan = banyak_pesanan + 1
+
+    print(f"{menu[pilih_menu - 1]} x {jumlah} = Rp {subtotal}")
+    print(f"Total sementara : Rp {total}")
+
+    # customer menginput apakah mau tambah pesanan atau tidak (Looping)
     tambah = input("Apakah mau tambah pesanan? (ya/tidak) : ")
 
-#menampilkan struk pembayaran
-print ("STRUK PEMBAYARAN")
+#
+# MENAMPILKAN STRUK PEMBAYARAN
+print("\n==============================")
+print("       STRUK PEMBAYARAN       ")
+print("==============================")
 
-#conditional 
-if pilihan == "1": 
-    print ("Tipe Pesanan : Take Away")
+# Kondisional tipe pesanan
+if pilihan == "1":
+    print("Tipe Pesanan : Take Away")
 elif pilihan == "2":
-    print (f"Tipe Pesanan : Dine In (Meja {no_meja})")
+    print(f"Tipe Pesanan : Dine In (Meja {no_meja})")
 
-print (f"Total pembayaran : Rp {total}")
-print ("Terima kasih telah memesan di McD!")
+print("\nRincian Pesanan:")
+
+# Looping untuk mencetak elemen Array dari indeks 0 sampai banyak_pesanan - 1
+for i in range(banyak_pesanan):
+    print(
+        f"{i + 1}. {nama_pesanan[i]} x {jumlah_pesanan[i]} = Rp {subtotal_pesanan[i]}"
+    )
+
+print("------------------------------")
+print(f"Total pembayaran : Rp {total}")
+print("==============================")
+print("Terima kasih telah memesan di McD!")
