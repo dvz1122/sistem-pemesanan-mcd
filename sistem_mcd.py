@@ -109,7 +109,7 @@ elif pilihan == "2":
 
 print("\nRincian Pesanan:")
 
-# Looping untuk mencetak elemen Array dari indeks 0 sampai banyak_pesanan - 1
+# Looping untuk mencetak (print) Array/list dari loopingan menu awal dan menu tambahan customer dari awal sampai habis
 for i in range(banyak_pesanan):
     print(
         f"{i + 1}. {nama_pesanan[i]} x {jumlah_pesanan[i]} = Rp {subtotal_pesanan[i]}"
